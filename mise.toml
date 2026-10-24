@@ -1,0 +1,15 @@
+[tools]
+node = "lts"
+pnpm = "latest"
+
+[tasks.dev]
+description = "Start the Astro development server"
+run = "pnpm run dev"
+
+[tasks.build]
+description = "Build the static site for Cloudflare Pages"
+run = "pnpm run build"
+
+[tasks.preview]
+description = "Preview the production build locally"
+run = "pnpm run preview"

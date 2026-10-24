@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title="M3 Foundation — Coming Soon"
+  description="The official site of the M3 Foundation. Coming soon."
+>
+  <main class="landing">
+    <p class="status-pill">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Coming soon</span>
+    </p>
+    <h1 class="brand-title">M3 Foundation</h1>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; {year} M3 Foundation</p>
+  </footer>
+</Layout>

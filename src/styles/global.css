@@ -1,0 +1,166 @@
+@layer reset, theme, base, components;
+
+@layer reset {
+  :where(html, body, main, footer, h1, p, span) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer theme {
+  :root {
+    --color-bg-light: #f7f5f0;
+    --color-bg-dark: #0d0d0c;
+    --color-surface-light: #efeae1;
+    --color-surface-dark: #171715;
+    --color-text-light: #141413;
+    --color-text-dark: #f2efe9;
+    --color-muted-light: #4d4b46;
+    --color-muted-dark: #b5b1a8;
+    --color-border-light: #73706a;
+    --color-border-dark: #827e76;
+    --color-rule-light: #d6d1c7;
+    --color-rule-dark: #292826;
+    --color-accent-light: #2d5a43;
+    --color-accent-dark: #6ec498;
+
+    --color-bg: var(--color-bg-light);
+    --color-surface: var(--color-surface-light);
+    --color-text: var(--color-text-light);
+    --color-muted: var(--color-muted-light);
+    --color-border: var(--color-border-light);
+    --color-rule: var(--color-rule-light);
+    --color-accent: var(--color-accent-light);
+
+    @media (prefers-color-scheme: dark) {
+      --color-bg: var(--color-bg-dark);
+      --color-surface: var(--color-surface-dark);
+      --color-text: var(--color-text-dark);
+      --color-muted: var(--color-muted-dark);
+      --color-border: var(--color-border-dark);
+      --color-rule: var(--color-rule-dark);
+      --color-accent: var(--color-accent-dark);
+    }
+
+    @supports (color: light-dark(white, black)) {
+      --color-bg: light-dark(var(--color-bg-light), var(--color-bg-dark));
+      --color-surface: light-dark(var(--color-surface-light), var(--color-surface-dark));
+      --color-text: light-dark(var(--color-text-light), var(--color-text-dark));
+      --color-muted: light-dark(var(--color-muted-light), var(--color-muted-dark));
+      --color-border: light-dark(var(--color-border-light), var(--color-border-dark));
+      --color-rule: light-dark(var(--color-rule-light), var(--color-rule-dark));
+      --color-accent: light-dark(var(--color-accent-light), var(--color-accent-dark));
+    }
+
+    @media (forced-colors: active) {
+      --color-bg: Canvas;
+      --color-surface: Canvas;
+      --color-text: CanvasText;
+      --color-muted: CanvasText;
+      --color-border: CanvasText;
+      --color-rule: GrayText;
+      --color-accent: Highlight;
+    }
+
+    --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter Variable', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    color-scheme: light dark;
+    accent-color: var(--color-accent);
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-block-size: 100dvh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    line-height: 1.5;
+    text-align: start;
+    overflow-wrap: break-word;
+    background-image: radial-gradient(
+      circle at 50% 35%,
+      var(--color-surface) 0%,
+      transparent 65%
+    );
+  }
+
+  ::selection {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+  }
+}
+
+@layer components {
+  .landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
+    padding-block: clamp(3rem, 8vh, 6rem);
+    text-align: center;
+    gap: 1.75rem;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding-block: 0.35rem;
+    padding-inline: 0.875rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999rem;
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .status-dot {
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    border: 1px solid currentColor;
+  }
+
+  .brand-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(3.5rem, 2rem + 7vw, 7.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    text-wrap: balance;
+  }
+
+  .brand-subtitle {
+    max-inline-size: 42ch;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 0.92rem + 0.35vw, 1.1875rem);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  .site-footer {
+    padding-block: 1.5rem;
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
+    border-block-start: 1px solid var(--color-rule);
+    display: flex;
+    justify-content: center;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+  }
+}

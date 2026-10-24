@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://m3.foundation/sitemap-index.xml
